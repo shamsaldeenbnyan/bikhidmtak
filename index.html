@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بخدمتك | منصة خدمات التوصيل</title>
+
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #6dd5fa, #2980b9, #6dd5fa);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1, h2, p { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .container {
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 450px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    input, select, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      font-size: 15px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    input, select { background: #fff; color: #000; }
+
+    button {
+      background: #2c7a4b;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover { background: #1f5935; }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      background: #2c7a4b;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover { background: #1f5935; }
+
+    .approval { display: flex; justify-content: center; gap: 10px; margin: 5px 0; }
+
+    footer {
+      margin: 30px 0;
+      font-size: 14px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- رأس الصفحة مع الشعار -->
+<div class="header">
+  <img src="https://i.postimg.cc/9XYwQ43D/watermarked-e9c96f62-e8f4-48af-93b9-0054682515a0.png" alt="شعار بخدمتك">
+  <h1>🚗 بخدمتك</h1>
+</div>
+
+<p>منصة تربط الزبائن بسائقين موثوقين وفق معايير أخلاقية</p>
+
+<a class="btn" href="#client">🧍‍♂️ اطلب سائق</a>
+<a class="btn" href="#manager">🛠 إدارة الطلبات</a>
+
+<!-- نموذج الزبون -->
+<div class="container" id="client">
+  <h2>📋 طلب سائق</h2>
+  <form id="clientForm">
+    <input type="text" id="passenger" placeholder="اسم الراكب" required>
+
+    <label>نوع السائق المرغوب:</label>
+    <select id="desiredDriver" required>
+      <option value="">اختر النوع</option>
+      <option value="شاب">شاب</option>
+      <option value="رجل كبير">رجل كبير</option>
+      <option value="فتاة">فتاة</option>
+    </select>
+
+    <select id="subscription" required>
+      <option value="">نوع الاشتراك</option>
+      <option value="يومي">يومي</option>
+      <option value="أسبوعي">أسبوعي</option>
+      <option value="شهري">شهري</option>
+    </select>
+
+    <input type="number" id="amount" placeholder="المبلغ المدفوع (دينار)" required>
+
+    <button type="submit">إرسال الطلب</button>
+  </form>
+</div>
+
+<!-- إدارة الطلبات للمدير -->
+<div class="container" id="manager">
+  <h2>🛠 إدارة الطلبات</h2>
+  <p>اختر نوع السائق للرد بالمتوفر أو غير متوفر مع السعر النهائي</p>
+
+  <div>
+    <p>شاب</p>
+    <input type="number" id="priceShab" placeholder="السعر النهائي">
+    <div class="approval">
+      <button onclick="respond('شاب','متوفر',document.getElementById('priceShab').value)">✅ متوفر</button>
+      <button onclick="respond('شاب','غير متوفر',document.getElementById('priceShab').value)">❌ غير متوفر</button>
+    </div>
+  </div>
+
+  <div>
+    <p>رجل كبير</p>
+    <input type="number" id="priceOld" placeholder="السعر النهائي">
+    <div class="approval">
+      <button onclick="respond('رجل كبير','متوفر',document.getElementById('priceOld').value)">✅ متوفر</button>
+      <button onclick="respond('رجل كبير','غير متوفر',document.getElementById('priceOld').value)">❌ غير متوفر</button>
+    </div>
+  </div>
+
+  <div>
+    <p>فتاة</p>
+    <input type="number" id="priceGirl" placeholder="السعر النهائي">
+    <div class="approval">
+      <button onclick="respond('فتاة','متوفر',document.getElementById('priceGirl').value)">✅ متوفر</button>
+      <button onclick="respond('فتاة','غير متوفر',document.getElementById('priceGirl').value)">❌ غير متوفر</button>
+    </div>
+  </div>
+</div>
+
+<footer>© 2025 بخدمتك – جميع الحقوق محفوظة</footer>
+
+<script>
+const ADMIN_PHONE = "0798266006";
+
+// إرسال طلب الزبون على واتساب
+document.getElementById("clientForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const message = `طلب جديد عبر بخدمتك
+اسم الراكب: ${document.getElementById('passenger').value}
+نوع السائق المرغوب: ${document.getElementById('desiredDriver').value}
+نوع الاشتراك: ${document.getElementById('subscription').value}
+المبلغ المدفوع: ${document.getElementById('amount').value} دينار`;
+  window.open(`https://wa.me/962${ADMIN_PHONE}?text=${encodeURIComponent(message)}`,"_blank");
+});
+
+// رد المدير
+function respond(driverType,status,price){
+  const msg = `رد مدير على طلب السائق: ${driverType}
+الحالة: ${status}
+السعر النهائي: ${price} دينار`;
+  window.open(`https://wa.me/962${ADMIN_PHONE}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+</script>
+
+</body>
+</html>
